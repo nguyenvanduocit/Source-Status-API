@@ -32,7 +32,7 @@ class ZingMp3 {
 		$httpClient = new Client();
 		$endpoint = sprintf('%1$s/%2$s?keycode=%3$s&requestdata=%4$s', $this->baseURI, $path, $this->keycode, json_encode(array('id'=>$objectId)));
 		$res = $httpClient->get($endpoint);
-		if($res->getStatusCode() ===200){
+		if($res->getStatusCode() === 200){
 			$bodyObject = json_decode($res->getBody()->getContents());
 			if(isset($bodyObject->source)){
 				/**
@@ -43,6 +43,9 @@ class ZingMp3 {
 				}
 				else if(isset($bodyObject->source->{'720'})) {
 					$resultObject->setMessage( $bodyObject->source->{'720'} );
+				}
+				else if(isset($bodyObject->source->{'480'})) {
+					$resultObject->setMessage( $bodyObject->source->{'480'} );
 				}
 				else if($bodyObject->source && isset($bodyObject->source->{'320'})){
 					$resultObject->setMessage($bodyObject->source->{'320'});
