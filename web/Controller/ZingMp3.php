@@ -56,6 +56,10 @@ class ZingMp3 {
 				 */
 				$resultObject->setMessage($bodyObject->content);
 			}
+			else{
+				$resultObject->setErrorCode(100);
+				$resultObject->setMessage('This song was blog download by Zing.');
+			}
 		}
 		else{
 			$resultObject->setErrorCode($res->getStatusCode());
