@@ -2,7 +2,7 @@
     Options -MultiViews
 
     RewriteEngine On
-    RewriteBase /
+    RewriteBase /slackBotAPI/
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ web/index.php [QSA,L]
 </IfModule>
