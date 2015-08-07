@@ -3,6 +3,8 @@
 
     RewriteEngine On
     RewriteBase /
+	RewriteCond %{THE_REQUEST} \s(/public/\S+)\s
+	RewriteRule ^ /public/%1 [L]
 
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ web/index.php [QSA,L]
