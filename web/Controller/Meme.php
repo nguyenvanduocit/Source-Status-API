@@ -34,7 +34,7 @@ class Meme {
 		$this->outputDir = 'Public/Meme';
 		$this->memeList = array(
 			'1'=>array(
-				'src'=>__DIR__.'/../Asset/meme/1.jpg',
+				'src'=>APP_DIR.'/Asset/meme/1.jpg',
 				'position'=>array(
 					array(10, 10)
 				)
