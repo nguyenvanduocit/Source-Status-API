@@ -54,10 +54,11 @@ class Meme {
 	public function generate(Request $request, Application $app){
 		$backgroundId = $request->get('backgroundId');
 		if(array_key_exists($backgroundId, $this->memeList)){
+			$resultObject = new Response();
 			$backgroundPath = $this->memeList[$backgroundId];
 			$imagine = new Imagine();
 			$imagine->open($backgroundPath);
-			return new JsonResponse(array('msg'=>'Fuck you'));
+			return new JsonResponse($resultObject);
 		}
 		else{
 			/**
