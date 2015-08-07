@@ -27,7 +27,7 @@ $app->get('/public/meme/{filename}', function ($filename) use ($app) {
 		readfile($filePath);
 	};
 	return $app->stream($stream, 200, array(
-		'Content-Type' => 'text/csv',
+		'Content-Type' => 'image/png',
 		'Content-length' => filesize($filePath),
 		'Content-Disposition' => 'attachment; filename="'.$filename.'"'
 	));
