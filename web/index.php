@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Static file handler
+ */
+$filename = __DIR__.preg_replace('#(\?.*)$#', '', $_SERVER['REQUEST_URI']);
+if (is_file($filename)) {
+	return false;
+}
+
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -17,12 +25,5 @@ $app->post( '/meme', '\SlackBotService\Controller\Meme::generate' );
 $app->error( function ( \Exception $e, $code ) {
 	return new JsonResponse( array( 'errorCode' => $code, 'message' => $e->getMessage() ) );
 } );
-/**
- * Static file handler
- */
-$filename = __DIR__.preg_replace('#(\?.*)$#', '', $_SERVER['REQUEST_URI']);
-if (is_file($filename)) {
-	return false;
-}
 
 $app->run();
