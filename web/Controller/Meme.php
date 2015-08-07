@@ -48,7 +48,7 @@ class Meme {
 	 * @param \Symfony\Component\HttpFoundation\Request $request
 	 * @param \Silex\Application                        $app
 	 *
-	 * @return void
+	 * @return JsonResponse
 	 * @author nguyenvanduocit
 	 */
 	public function generate(Request $request, Application $app){
