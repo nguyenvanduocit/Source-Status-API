@@ -59,7 +59,7 @@ class Meme {
 			$resultObject = new Response();
 			$backgroundPath = $this->memeList[$backgroundId];
 			$imagine = new Imagine();
-			$imagine->open($backgroundPath);
+			$imagine->open($backgroundPath['src']);
 			return new JsonResponse($resultObject);
 		}
 		else{
