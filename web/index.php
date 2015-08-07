@@ -19,7 +19,7 @@ $app->post( '/translate', '\SlackBotService\Controller\Translate::translate' );
 $app->post( '/zingmp3', '\SlackBotService\Controller\ZingMp3::post' );
 $app->post( '/meme', '\SlackBotService\Controller\Meme::generate' );
 $app->get('/public/meme/{filename}', function ($filename) use ($app) {
-	$filePath = APP_DIR.'/public/meme/' . $filename;
+	$filePath = '/public/meme/' . $filename;
 	if (!file_exists($filePath)) {
 		$app->abort(404, $filePath . ' not found.');
 	}
