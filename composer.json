@@ -22,9 +22,7 @@
 
         "stichoza/google-translate-php": "~3.1",
         "imagine/imagine": "^0.6.2",
-        "ext-gd":"*",
-        "ext-imagick":"*",
-        "ext-gmagick":"*"
+        "ext-gd":"*"
     },
     "autoload": {
         "psr-4": { "SlackBotService\\": "web/" }

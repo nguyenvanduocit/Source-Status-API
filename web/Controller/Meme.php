@@ -28,8 +28,10 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class Meme {
 	protected $memeList;
+	protected $outputDir;
 	public function __construct()
 	{
+		$this->outputDir = __DIR__.'/Public/Meme';
 		$this->memeList = array(
 			'1'=>array(
 				'src'=>__DIR__.'/Asset/meme/1.jpg',
