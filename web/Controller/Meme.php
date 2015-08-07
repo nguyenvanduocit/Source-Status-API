@@ -119,7 +119,6 @@ class Meme {
 			$meme = $this->memeList[$backgroundId];
 			$fileName = md5(mt_rand(1,20)).'.jpg';
 			$mailLayer = ImageWorkshop::initFromPath($meme['src']);
-
 			$textPaths = explode(';', $text);
 			foreach($textPaths as $index=>$text){
 				if(array_key_exists($index, $meme['position'])){
@@ -130,8 +129,9 @@ class Meme {
 					$position = $meme['position'][$lastPostion];
 				}
 				$textLayer = ImageWorkshop::initTextLayer($text, APP_DIR.'/Asset/font/OpenSans-Bold.ttf', $meme['font']['size'], $meme['font']['color'], 0, null);
+				$mailLayer->addLayer($index,$textLayer );
 			}
-			$image->save($this->outputDir.'/'.$fileName);
+			$mailLayer->save($this->outputDir,$fileName);
 			$resultObject->setMessage('http://slackbotapi.senviet.org/web/public/meme/'.$fileName.'?rand='.uniqid('rand', FALSE));
 
 		}
