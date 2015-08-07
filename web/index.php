@@ -13,14 +13,7 @@ $app->get('/public/meme/{filename}', function (Silex\Application $app, $filename
 	if (!file_exists($filePath)) {
 		$app->abort(404, $filePath . ' not found.');
 	}
-	$stream = function () use ($filePath) {
-		readfile($filePath);
-	};
-	return $app->stream($stream, 200, array(
-		'Content-Type' => 'image/png',
-		'Content-length' => filesize($filePath),
-		'Content-Disposition' => 'filename="'.$filename.'"'
-	));
+	return $app->sendFile($filePath);
 });
 /**
  * Error handler
