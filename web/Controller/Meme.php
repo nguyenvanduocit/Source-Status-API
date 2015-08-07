@@ -60,7 +60,7 @@ class Meme {
 			$backgroundPath = $this->memeList[$backgroundId];
 			$imagine = new Imagine();
 			$imagine->open($backgroundPath['src'])->save($this->outputDir.'/example.jpg');
-			$resultObject->setMessage($this->outputDir.'/example.jpg');
+			$resultObject->setMessage($request->getBasePath().'/Public/Meme/example.jpg');
 			return new JsonResponse($resultObject);
 		}
 		else{
