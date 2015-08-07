@@ -13,17 +13,18 @@ use Symfony\Component\HttpFoundation\Request;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-define('APP_DIR', __DIR__);
+define('APP_DIR', __);
 
 $app = new Silex\Application();
 $app->post( '/translate', '\SlackBotService\Controller\Translate::translate' );
 $app->post( '/zingmp3', '\SlackBotService\Controller\ZingMp3::post' );
 $app->post( '/meme', '\SlackBotService\Controller\Meme::generate' );
 $app->get('/public/meme/{filename}', function ($filename) use ($app) {
-	if (!file_exists('/public/meme/' . $filename)) {
-		$app->abort(404);
+	$filePath = APP_DIR.'/public/meme/' . $filename;
+	if (!file_exists($filePath)) {
+		$app->abort(404, $filePath . ' not found.');
 	}
-	return $app->sendFile('/public/meme/' . $filename);
+	return $app->sendFile($filePath);
 });
 /**
  * Error handler
