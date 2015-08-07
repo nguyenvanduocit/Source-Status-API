@@ -26,6 +26,7 @@ $app->get('/public/meme/{filename}', function ($filename) use ($app) {
 	$stream = function () use ($filePath) {
 		readfile($filePath);
 	};
+	var_dump($stream);
 	return $app->stream($stream, 200, array(
 		'Content-Type' => 'image/png',
 		'Content-length' => filesize($filePath),
