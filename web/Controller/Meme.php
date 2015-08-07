@@ -31,10 +31,10 @@ class Meme {
 	protected $outputDir;
 	public function __construct()
 	{
-		$this->outputDir = __DIR__.'/Public/Meme';
+		$this->outputDir = 'Public/Meme';
 		$this->memeList = array(
 			'1'=>array(
-				'src'=>__DIR__.'/Asset/meme/1.jpg',
+				'src'=>'Asset/meme/1.jpg',
 				'position'=>array(
 					array(10, 10)
 				)
@@ -59,10 +59,8 @@ class Meme {
 			$resultObject = new Response();
 			$backgroundPath = $this->memeList[$backgroundId];
 			$imagine = new Imagine();
-			$resultObject->setErrorCode('100');
-			$resultObject->setMessage($backgroundPath);
-			return new JsonResponse($resultObject);
 			$imagine->open($backgroundPath);
+			return new JsonResponse($resultObject);
 		}
 		else{
 			/**
