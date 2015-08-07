@@ -18,7 +18,27 @@ use Stichoza\GoogleTranslate\TranslateClient;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class Translate
+ * Summary
+ *
+ * @since   0.9.0
+ * @access (private, protected, or public)
+ * @package SlackBotService\Controller
+ */
 class Translate {
+	/**
+	 * Summary.
+	 *
+	 * @since  0.9.0
+	 * @see
+	 *
+	 * @param \Symfony\Component\HttpFoundation\Request $request
+	 * @param \Silex\Application                        $app
+	 *
+	 * @return \Symfony\Component\HttpFoundation\JsonResponse
+	 * @author nguyenvanduocit
+	 */
 	public function translate(Request $request, Application $app){
 		$resultObject = new Response();
 		$from = $request->get('from');

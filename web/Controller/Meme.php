@@ -1,0 +1,57 @@
+<?php
+/**
+ * Summary
+ * Description.
+ *
+ * @since  0.9.0
+ * @package
+ * @subpackage
+ * @author nguyenvanduocit
+ */
+
+namespace SlackBotService\Controller;
+
+use Silex\Application;
+use SlackBotService\Model\Response;
+use Stichoza\GoogleTranslate\TranslateClient;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+
+/**
+ * Class Meme
+ * Summary
+ *
+ * @since   0.9.0
+ * @access (private, protected, or public)
+ * @package SlackBotService\Controller
+ */
+class Meme {
+	protected $memeList;
+	public function __construct()
+	{
+		$this->memeList = array(
+			'1'=>array(
+				'src'=>__DIR__.'/Asset/meme/1.jpg',
+				'position'=>array(
+					array(10, 10)
+				)
+			)
+		);
+	}
+	/**
+	 * Summary.
+	 *
+	 * @since  0.9.0
+	 * @see
+	 *
+	 * @param \Symfony\Component\HttpFoundation\Request $request
+	 * @param \Silex\Application                        $app
+	 *
+	 * @return void
+	 * @author nguyenvanduocit
+	 */
+	public function generate(Request $request, Application $app){
+		$backgroundId = $request->get('backgroundId');
+
+	}
+}

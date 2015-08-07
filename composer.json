@@ -20,7 +20,11 @@
         "doctrine/dbal": ">=2.2.0,<2.4.0-dev",
         "swiftmailer/swiftmailer": "5.*",
 
-        "stichoza/google-translate-php": "~3.1"
+        "stichoza/google-translate-php": "~3.1",
+        "imagine/imagine": "^0.6.2",
+        "ext-gd":"*",
+        "ext-imagick":"*",
+        "ext-gmagick":"*"
     },
     "autoload": {
         "psr-4": { "SlackBotService\\": "web/" }
