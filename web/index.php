@@ -10,10 +10,9 @@ if (is_file($filename)) {
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+define('APP_DIR', __DIR__);
+require_once APP_DIR . '/../vendor/autoload.php';
 
-require_once __DIR__ . '/../vendor/autoload.php';
-
-define('APP_DIR', __);
 
 $app = new Silex\Application();
 $app->post( '/translate', '\SlackBotService\Controller\Translate::translate' );
