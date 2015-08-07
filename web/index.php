@@ -19,6 +19,12 @@ $app = new Silex\Application();
 $app->post( '/translate', '\SlackBotService\Controller\Translate::translate' );
 $app->post( '/zingmp3', '\SlackBotService\Controller\ZingMp3::post' );
 $app->post( '/meme', '\SlackBotService\Controller\Meme::generate' );
+$app->get('/public/{path}', function ($path) use ($app) {
+	if (!file_exists('/public/' . $path)) {
+		$app->abort(404);
+	}
+	return $app->sendFile('/public/' . $path);
+});
 /**
  * Error handler
  */
