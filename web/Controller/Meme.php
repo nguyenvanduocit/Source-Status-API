@@ -31,7 +31,7 @@ class Meme {
 	protected $outputDir;
 	public function __construct()
 	{
-		$this->outputDir = 'Public/Meme';
+		$this->outputDir = APP_DIR.'/Public/Meme';
 		$this->memeList = array(
 			'1'=>array(
 				'src'=>APP_DIR.'/Asset/meme/1.jpg',
@@ -59,7 +59,8 @@ class Meme {
 			$resultObject = new Response();
 			$backgroundPath = $this->memeList[$backgroundId];
 			$imagine = new Imagine();
-			$imagine->open($backgroundPath['src']);
+			$imagine->open($backgroundPath['src'])->save($this->outputDir.'/example.jpg');
+			$resultObject->setMessage($this->outputDir.'/example.jpg');
 			return new JsonResponse($resultObject);
 		}
 		else{
