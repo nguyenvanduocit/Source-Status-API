@@ -31,7 +31,7 @@ class Meme {
 	protected $outputDir;
 	public function __construct()
 	{
-		$this->outputDir = APP_DIR.'/Public/Meme';
+		$this->outputDir = APP_DIR.'/public/meme';
 		$this->memeList = array(
 			'1'=>array(
 				'src'=>APP_DIR.'/Asset/meme/1.jpg',
