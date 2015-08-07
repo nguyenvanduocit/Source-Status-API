@@ -23,7 +23,14 @@ $app->get('/public/meme/{filename}', function ($filename) use ($app) {
 	if (!file_exists($filePath)) {
 		$app->abort(404, $filePath . ' not found.');
 	}
-	return $app->sendFile($filePath);
+	$stream = function () use ($filePath) {
+		readfile($filePath);
+	};
+	return $app->stream($stream, 200, array(
+		'Content-Type' => 'text/csv',
+		'Content-length' => filesize($filePath),
+		'Content-Disposition' => 'attachment; filename="'.$filename.'"'
+	));
 });
 /**
  * Error handler
