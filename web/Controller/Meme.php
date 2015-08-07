@@ -57,6 +57,7 @@ class Meme {
 			$backgroundPath = $this->memeList[$backgroundId];
 			$imagine = new Imagine();
 			$imagine->open($backgroundPath);
+			return new JsonResponse(array('msg'=>'Fuck you'));
 		}
 		else{
 			/**
