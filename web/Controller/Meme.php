@@ -11,6 +11,7 @@
 
 namespace SlackBotService\Controller;
 
+use Imagine\Gd\Imagine;
 use Silex\Application;
 use SlackBotService\Model\Response;
 use Stichoza\GoogleTranslate\TranslateClient;
@@ -52,6 +53,15 @@ class Meme {
 	 */
 	public function generate(Request $request, Application $app){
 		$backgroundId = $request->get('backgroundId');
-
+		if(array_key_exists($backgroundId, $this->memeList)){
+			$backgroundPath = $this->memeList[$backgroundId];
+			$imagine = new Imagine();
+			$imagine->open($backgroundPath);
+		}
+		else{
+			/**
+			 * Create a troll image
+			 */
+		}
 	}
 }
