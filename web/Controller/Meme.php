@@ -59,8 +59,10 @@ class Meme {
 			$resultObject = new Response();
 			$backgroundPath = $this->memeList[$backgroundId];
 			$imagine = new Imagine();
-			$imagine->open($backgroundPath);
+			$resultObject->setErrorCode('100');
+			$resultObject->setMessage($backgroundPath);
 			return new JsonResponse($resultObject);
+			$imagine->open($backgroundPath);
 		}
 		else{
 			/**
