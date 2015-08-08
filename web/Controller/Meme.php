@@ -33,68 +33,105 @@ class Meme {
 	{
 		$this->outputDir = APP_DIR.'/public/meme';
 		$this->memeList = array(
+			'1'=>array(
+				'src'=>APP_DIR.'/Asset/meme/1.jpg',
+				'position'=>array(
+					'top'
+				),
+				'font'=>array(
+					'size'=>80,
+					'color'=>'fff'
+				)
+			),
 			'2'=>array(
 				'src'=>APP_DIR.'/Asset/meme/2.jpg',
 				'position'=>array(
-					array(
-						'y'=>59
-					),
-					array(
-						'y'=>188
-					)
+					'top',
+					'bottom'
 				),
 				'font'=>array(
-					'size'=>50,
+					'size'=>80,
 					'color'=>'fff'
 				)
 			),
 			'3'=>array(
 				'src'=>APP_DIR.'/Asset/meme/3.jpg',
 				'position'=>array(
-					array(
-						'y'=>427
-					)
+					'bottom'
 				),
 				'font'=>array(
-					'size'=>40,
+					'size'=>80,
 					'color'=>'000'
 				)
 			),
 			'4'=>array(
 				'src'=>APP_DIR.'/Asset/meme/4.jpg',
 				'position'=>array(
-					array(
-						'y'=>490
-					)
+					'bottom'
 				),
 				'font'=>array(
-					'size'=>40,
+					'size'=>80,
 					'color'=>'000'
 				)
 			),
 			'5'=>array(
 				'src'=>APP_DIR.'/Asset/meme/5.jpg',
 				'position'=>array(
-					array(
-						'y'=>83
-					)
+					'top'
 				),
 				'font'=>array(
-					'size'=>40,
+					'size'=>80,
 					'color'=>'000'
 				)
 			),
 			'6'=>array(
 				'src'=>APP_DIR.'/Asset/meme/6.jpg',
 				'position'=>array(
-					array(
-						'x'=>33,
-						'y'=>580
-					)
+					'bottom'
 				),
 				'font'=>array(
-					'size'=>40,
+					'size'=>80,
 					'color'=>'000'
+				)
+			),
+			'7'=>array(
+				'src'=>APP_DIR.'/Asset/meme/7.jpg',
+				'position'=>array(
+					'bottom'
+				),
+				'font'=>array(
+					'size'=>80,
+					'color'=>'000'
+				)
+			),
+			'8'=>array(
+				'src'=>APP_DIR.'/Asset/meme/8.jpg',
+				'position'=>array(
+					'bottom'
+				),
+				'font'=>array(
+					'size'=>80,
+					'color'=>'000'
+				)
+			),
+			'9'=>array(
+				'src'=>APP_DIR.'/Asset/meme/9.jpg',
+				'position'=>array(
+					'bottom'
+				),
+				'font'=>array(
+					'size'=>70,
+					'color'=>'000'
+				)
+			),
+			'wumbo'=>array(
+				'src'=>APP_DIR.'/Asset/meme/wumbo.jpg',
+				'position'=>array(
+					'bottom'
+				),
+				'font'=>array(
+					'size'=>70,
+					'color'=>'fff'
 				)
 			)
 		);
@@ -118,7 +155,7 @@ class Meme {
 			$text = $request->get('text');
 			$meme = $this->memeList[$backgroundId];
 			$fileName = md5(mt_rand(1,20)).'.jpg';
-			$mailLayer = ImageWorkshop::initFromPath($meme['src']);
+			$mainLayer = ImageWorkshop::initFromPath($meme['src']);
 			$textPaths = explode(';', $text);
 			foreach($textPaths as $index=>$text){
 				if(array_key_exists($index, $meme['position'])){
@@ -129,15 +166,30 @@ class Meme {
 					$position = $meme['position'][$lastPostion];
 				}
 				$textLayer = ImageWorkshop::initTextLayer($text, APP_DIR.'/Asset/font/OpenSans-Bold.ttf', $meme['font']['size'], $meme['font']['color'], 0, null);
-				$mailLayer->addLayer($index,$textLayer );
+				if($textLayer->getWidth() >= $mainLayer->getWidth()) {
+					$textLayer->resizeInPixel( $mainLayer->getWidth() - 100, NULL, TRUE );
+				}
+				if($position ==='top'){
+					$y = 0 + 20;
+				}
+				else{
+					$y = $mainLayer->getHeight()-$textLayer->getHeight() - 20;
+				}
+				$x = $mainLayer->getWidth()/2 - $textLayer->getWidth()/2;
+				$mainLayer->addLayer($index,$textLayer, $x, $y);
 			}
-			$mailLayer->save($this->outputDir,$fileName);
+			$mainLayer->save($this->outputDir,$fileName);
 			$resultObject->setMessage('http://slackbotapi.senviet.org/web/public/meme/'.$fileName.'?rand='.uniqid('rand', FALSE));
 
 		}
 		else{
-			$resultObject->setMessage('http://slackbotapi.senviet.org/web/public/meme/404.png');
+			$resultObject->setMessage('http://slackbotapi.senviet.org/web/public/meme/list.jpg');
 		}
+		return new JsonResponse($resultObject);
+	}
+	public function memoList(Request $request, Application $app){
+		$resultObject = new Response();
+		$resultObject->setMessage('http://slackbotapi.senviet.org/web/public/meme/list.jpg');
 		return new JsonResponse($resultObject);
 	}
 }
