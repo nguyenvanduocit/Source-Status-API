@@ -15,11 +15,13 @@ namespace SlackBotService\Model;
 use JsonSerializable;
 
 class Response implements JsonSerializable{
+	protected $type;
 	protected $message;
 	protected $errorCode = null;
-	public function __construct($message = '', $errorCode = null){
+	public function __construct($message = '', $errorCode = null, $type='text'){
 		$this->message = $message;
 		$this->errorCode = $errorCode;
+		$this->type = $type;
 	}
 
 	/**
@@ -55,5 +57,19 @@ class Response implements JsonSerializable{
 	 */
 	public function setErrorCode( $errorCode ) {
 		$this->errorCode = $errorCode;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getType() {
+		return $this->type;
+	}
+
+	/**
+	 * @param string $type
+	 */
+	public function setType( $type ) {
+		$this->type = $type;
 	}
 }

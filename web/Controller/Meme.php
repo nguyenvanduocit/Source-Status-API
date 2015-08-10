@@ -13,6 +13,7 @@ namespace SlackBotService\Controller;
 
 use PHPImageWorkshop\ImageWorkshop;
 use Silex\Application;
+use SlackBotService\Model\AttachmentResponse;
 use SlackBotService\Model\Response;
 use Stichoza\GoogleTranslate\TranslateClient;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -150,7 +151,7 @@ class Meme {
 	 */
 	public function generate(Request $request, Application $app){
 		$backgroundId = $request->get('backgroundId');
-		$resultObject = new Response();
+		$resultObject = new AttachmentResponse();
 		if(array_key_exists($backgroundId, $this->memeList)){
 			$text = $request->get('text');
 			$meme = $this->memeList[$backgroundId];
@@ -179,12 +180,13 @@ class Meme {
 				$mainLayer->addLayer($index,$textLayer, $x, $y);
 			}
 			$mainLayer->save($this->outputDir,$fileName);
-			$resultObject->setMessage('http://slackbotapi.senviet.org/web/public/meme/'.$fileName.'?rand='.uniqid('rand', FALSE));
+			$resultObject->setImageUrl('http://slackbotapi.senviet.org/web/public/meme/'.$fileName.'?rand='.uniqid('rand', FALSE));
 
 		}
 		else{
-			$resultObject->setMessage('http://slackbotapi.senviet.org/web/public/meme/list.jpg');
+			$resultObject->setImageUrl('http://slackbotapi.senviet.org/web/public/meme/list.jpg');
 		}
+		$resultObject->setType('photo');
 		return new JsonResponse($resultObject);
 	}
 	public function memoList(Request $request, Application $app){
