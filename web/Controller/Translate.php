@@ -13,6 +13,7 @@ namespace SlackBotService\Controller;
 
 
 use Silex\Application;
+use SlackBotService\Model\AttachmentResponse;
 use SlackBotService\Model\Response;
 use Stichoza\GoogleTranslate\TranslateClient;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -40,7 +41,7 @@ class Translate {
 	 * @author nguyenvanduocit
 	 */
 	public function translate(Request $request, Application $app){
-		$resultObject = new Response();
+		$resultObject = new AttachmentResponse();
 		$from = $request->get('from');
 		$to = $request->get('to', 'en');
 		$text = $request->get('text');
@@ -51,16 +52,16 @@ class Translate {
 			$from = ($from?$from:$translator->getLastDetectedSource());
 			$messageFormat = '%1$s -> %2$s : %3$s';
 			$message  = sprintf($messageFormat, $from, $to, $translatedText);
-			$resultObject->setMessage($message);
+			$resultObject->setText($message);
 		}
 		else{
 			$resultObject->setErrorCode(404);
 			$detectedSource = $translator->getLastDetectedSource();
 			if(!$detectedSource){
-				$resultObject->setMessage('Can not detect your language');
+				$resultObject->setText('Can not detect your language');
 			}
 			else{
-				$resultObject->setMessage('Can not translate your text.');
+				$resultObject->setText('Can not translate your text.');
 			}
 		}
 		return new JsonResponse($resultObject);

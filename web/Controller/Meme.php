@@ -186,12 +186,11 @@ class Meme {
 		else{
 			$resultObject->setImageUrl('http://slackbotapi.senviet.org/web/public/meme/list.jpg');
 		}
-		$resultObject->setType('photo');
 		return new JsonResponse($resultObject);
 	}
 	public function memoList(Request $request, Application $app){
 		$resultObject = new Response();
-		$resultObject->setMessage('http://slackbotapi.senviet.org/web/public/meme/list.jpg');
+		$resultObject->setText('http://slackbotapi.senviet.org/web/public/meme/list.jpg');
 		return new JsonResponse($resultObject);
 	}
 }

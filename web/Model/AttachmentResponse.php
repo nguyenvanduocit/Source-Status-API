@@ -172,8 +172,8 @@ class AttachmentResponse extends Response{
 	/**
 	 * @return mixed
 	 */
-	public function getMessage() {
-		return $this->message;
+	public function getText() {
+		return $this->text;
 	}
 
 	/**
@@ -181,8 +181,8 @@ class AttachmentResponse extends Response{
 	 *
 	 * @return AttachmentResponse
 	 */
-	public function setMessage( $message ) {
-		$this->message = $message;
+	public function setText( $text ) {
+		$this->text = $text;
 
 		return $this;
 	}
@@ -229,13 +229,22 @@ class AttachmentResponse extends Response{
 	protected $author_icon;
 	protected $title;
 	protected $title_link;
-	protected $message;
+	protected $text;
 	protected $fields;
 	protected $image_url;
 	protected $thumb_url;
-	public function __construct($message = '', $errorCode = null, $type='attachment'){
-		parent::__construct($message, $errorCode, $type);
-		$this->type = 'attachment';
+	public function __construct($text = '', $errorCode = null, $type='attachment'){
+		parent::__construct($text, $errorCode, $type);
+		$this->color = '#36a64f';
+		$this->fallback = '';
+		$this->pretext = '';
+		$this->author_name = '';
+		$this->author_link = '';
+		$this->author_icon = '';
+		$this->title_link = '';
+		$this->fields = array();
+		$this->image_url = '';
+		$this->thumb_url = '';
 	}
 
 	/**

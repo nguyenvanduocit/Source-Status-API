@@ -16,10 +16,10 @@ use JsonSerializable;
 
 class Response implements JsonSerializable{
 	protected $type;
-	protected $message;
+	protected $text;
 	protected $errorCode = null;
-	public function __construct($message = '', $errorCode = null, $type='text'){
-		$this->message = $message;
+	public function __construct($text = '', $errorCode = null, $type='text'){
+		$this->text = $text;
 		$this->errorCode = $errorCode;
 		$this->type = $type;
 	}
@@ -27,15 +27,15 @@ class Response implements JsonSerializable{
 	/**
 	 * @return mixed
 	 */
-	public function getMessage() {
-		return $this->message;
+	public function getText() {
+		return $this->text;
 	}
 
 	/**
-	 * @param mixed $message
+	 * @param mixed $text
 	 */
-	public function setMessage( $message ) {
-		$this->message = $message;
+	public function setText( $text ) {
+		$this->text = $text;
 	}
 	public function jsonSerialize() {
 		$json = array();

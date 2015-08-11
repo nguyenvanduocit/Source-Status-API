@@ -78,11 +78,11 @@ class Quote {
 		if(array_key_exists($category, $this->quotes)){
 			$quotes = $this->quotes[$category];
 			$quoteContent = $quotes[array_rand($quotes)];
-			$response->setMessage($quoteContent);
+			$response->setText($quoteContent);
 		}
 		else{
 			$categorylist = implode(', ', array_keys($this->quotes));
-			$response->setMessage('I don\'t know about this category, I only know abount '.$categorylist);
+			$response->setText('I don\'t know about this category, I only know abount '.$categorylist);
 		}
 
 		return new JsonResponse($response);

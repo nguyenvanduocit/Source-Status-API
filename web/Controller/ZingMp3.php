@@ -25,7 +25,7 @@ class ZingMp3 {
 		$path = $request->get('path');
 		if(!$path){
 			$resultObject->setErrorCode(404);
-			$resultObject->setMessage('Your path is not exist');
+			$resultObject->setText('Your path is not exist');
 			return new JsonResponse($resultObject);
 		}
 		$objectId = $request->get('id');
@@ -39,34 +39,34 @@ class ZingMp3 {
 				 * This type have source : song, video
 				 */
 				if(isset($bodyObject->source->{'1080'})) {
-					$resultObject->setMessage( $bodyObject->source->{'1080'} );
+					$resultObject->setText( $bodyObject->source->{'1080'} );
 				}
 				else if(isset($bodyObject->source->{'720'})) {
-					$resultObject->setMessage( $bodyObject->source->{'720'} );
+					$resultObject->setText( $bodyObject->source->{'720'} );
 				}
 				else if(isset($bodyObject->source->{'480'})) {
-					$resultObject->setMessage( $bodyObject->source->{'480'} );
+					$resultObject->setText( $bodyObject->source->{'480'} );
 				}
 				else if($bodyObject->source && isset($bodyObject->source->{'320'})){
-					$resultObject->setMessage($bodyObject->source->{'320'});
+					$resultObject->setText($bodyObject->source->{'320'});
 				}else if($bodyObject->source && isset($bodyObject->source->{'128'})){
-					$resultObject->setMessage($bodyObject->source->{'128'});
+					$resultObject->setText($bodyObject->source->{'128'});
 				}
 			}
 			else if(isset($bodyObject->content)){
 				/**
 				 * Lyric
 				 */
-				$resultObject->setMessage($bodyObject->content);
+				$resultObject->setText($bodyObject->content);
 			}
 			else{
 				$resultObject->setErrorCode(100);
-				$resultObject->setMessage('This song was blog download by Zing.');
+				$resultObject->setText('This song was blog download by Zing.');
 			}
 		}
 		else{
 			$resultObject->setErrorCode($res->getStatusCode());
-			$resultObject->setMessage($res->getBody()->getContents());
+			$resultObject->setText($res->getBody()->getContents());
 		}
 		return new JsonResponse($resultObject);
 	}

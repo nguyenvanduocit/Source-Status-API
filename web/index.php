@@ -4,6 +4,22 @@ define('APP_DIR', __DIR__);
 require_once APP_DIR . '/../vendor/autoload.php';
 
 $app = new Silex\Application();
+
+/**
+ * Register database service
+ */
+$app->register(new Silex\Provider\DoctrineServiceProvider(), array(
+	'db.options' => array(
+		'dbname' => 'mydb',
+		'user' => 'user',
+		'password' => 'secret',
+		'host' => 'localhost',
+		'driver' => 'pdo_mysql',
+	),
+));
+/**
+ * router
+ */
 $app->post( '/translate', '\SlackBotService\Controller\Translate::translate' );
 $app->post( '/zingmp3', '\SlackBotService\Controller\ZingMp3::post' );
 
