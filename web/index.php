@@ -10,6 +10,9 @@ $app->post( '/zingmp3', '\SlackBotService\Controller\ZingMp3::post' );
 $app->post( '/meme/generate', '\SlackBotService\Controller\Meme::generate' );
 $app->post( '/meme/list', '\SlackBotService\Controller\Meme::memoList' );
 
+$app->post( '/quote', '\SlackBotService\Controller\Quote::post' );
+$app->post( '/horoscope', '\SlackBotService\Controller\Horoscope::post' );
+
 $app->get('/public/meme/{filename}', function (Silex\Application $app, $filename){
 	$filePath = APP_DIR.'/public/meme/' . $filename;
 	if (!file_exists($filePath)) {

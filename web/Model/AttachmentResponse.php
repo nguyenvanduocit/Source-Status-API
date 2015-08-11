@@ -172,8 +172,8 @@ class AttachmentResponse extends Response{
 	/**
 	 * @return mixed
 	 */
-	public function getText() {
-		return $this->text;
+	public function getMessage() {
+		return $this->message;
 	}
 
 	/**
@@ -181,8 +181,8 @@ class AttachmentResponse extends Response{
 	 *
 	 * @return AttachmentResponse
 	 */
-	public function setText( $text ) {
-		$this->text = $text;
+	public function setMessage( $message ) {
+		$this->message = $message;
 
 		return $this;
 	}
@@ -229,7 +229,7 @@ class AttachmentResponse extends Response{
 	protected $author_icon;
 	protected $title;
 	protected $title_link;
-	protected $text;
+	protected $message;
 	protected $fields;
 	protected $image_url;
 	protected $thumb_url;
