@@ -28,6 +28,7 @@ $app->post( '/meme/list', '\SlackBotService\Controller\Meme::memoList' );
 
 $app->post( '/quote', '\SlackBotService\Controller\Quote::post' );
 $app->post( '/horoscope', '\SlackBotService\Controller\Horoscope::post' );
+$app->post( '/funnyimage/random', '\SlackBotService\Controller\FunnyImage::post' );
 
 $app->get('/public/meme/{filename}', function (Silex\Application $app, $filename){
 	$filePath = APP_DIR.'/public/meme/' . $filename;

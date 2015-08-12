@@ -1,9 +1,11 @@
 <?php
 /**
- * Summary
- * Description.
+ * Believe about
+ * This controler show some think about some things
+ * Example what developer believe about name ? => the content of http://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/
+ * Ideal from : http://blog.codinghorror.com/doing-terrible-things-to-your-code/
  *
- * @since  0.9.0
+*@since  0.9.0
  * @package
  * @subpackage
  * @author nguyenvanduocit
@@ -27,7 +29,7 @@ use Symfony\Component\HttpFoundation\Request;
  * @access (private, protected, or public)
  * @package SlackBotService\Controller
  */
-class Quote {
+class BelieveAbout {
 	protected $quotes;
 	public function __construct(){
 		$this->quotes = array(

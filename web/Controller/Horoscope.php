@@ -73,7 +73,7 @@ class Horoscope {
 		if(!array_key_exists($sign, $this->dailyEndPoint)){
 			$errorResponse = new Response();
 			$errorResponse->setErrorCode('101');
-			$errorResponse->setText('Your sign is not exist.');
+			$errorResponse->setText('Your sign is not exist. What planet are you come from?');
 			return new JsonResponse($errorResponse);
 		}
 
