@@ -53,6 +53,7 @@ class FunnyImage {
 		if ( $category ==='programming' ) {
 			$data = $this->getRandomFactOfProgramming();
 			$response->setTitle($data['title']);
+			$response->setTitleLink('http://laptrinh.senviet.org');
 			$response->setImageUrl($data['image_url']);
 		} else {
 			$categorylist = implode( ', ', array_keys( $this->images ) );
