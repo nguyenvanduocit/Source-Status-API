@@ -12,6 +12,14 @@
 namespace SlackBotService\Model;
 
 
+/**
+ * Class DailyHoloscope
+ * Summary
+ *
+ * @since   1.0.0
+ * @access (private, protected, or public)
+ * @package SlackBotService\Model
+ */
 class DailyHoloscope {
 	/**
 	 * @return mixed
