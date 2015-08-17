@@ -229,7 +229,6 @@ class AttachmentResponse extends Response{
 	protected $author_icon;
 	protected $title;
 	protected $title_link;
-	protected $text;
 	protected $fields;
 	protected $image_url;
 	protected $thumb_url;
