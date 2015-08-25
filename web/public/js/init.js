@@ -72,7 +72,7 @@
 			};
 			this.startInterval = function(){
 				var self=this;
-				setInterval(function(){self.request()}, 5000);
+				setInterval(function(){self.request()}, 8000);
 			}
 		};
 
