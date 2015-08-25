@@ -39,7 +39,7 @@
 				if(realPlayer > 0){
 					var players = data.players;
 					players.sort(function(a, b) {
-						return a.Frags < b.Frags;
+						return a.Frags <= b.Frags;
 					});
 					for(var index = 0; index < players.length; index++){
 						listContainer.append(this.generateItem(players[index ].Name,players[index ].Frags + ' điểm'));
