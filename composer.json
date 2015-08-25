@@ -16,15 +16,19 @@
         "symfony/translation": "~2.3",
         "symfony/validator": "~2.3",
         "symfony/monolog-bridge": "~2.3",
-        "symfony/twig-bridge": "~2.3",
+        "symfony/twig-bridge": "^2.7",
         "doctrine/dbal": ">=2.2.0,<2.4.0-dev",
         "swiftmailer/swiftmailer": "5.*",
 
-        "stichoza/google-translate-php": "~3.1",
-        "ext-gd":"*",
-        "sybio/image-workshop": "^2.0"
+        "xpaw/php-source-query-class":"dev-master"
     },
     "autoload": {
-        "psr-4": { "SlackBotService\\": "web/" }
-    }
+        "psr-4": { "SourceStatus\\": "web/" }
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/xPaw/PHP-Source-Query"
+        }
+    ]
 }

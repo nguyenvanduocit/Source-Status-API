@@ -9,15 +9,29 @@
  * @author nguyenvanduocit
  */
 
-namespace SlackBotService\Model;
+namespace SourceStatus\Model;
 
 
 use JsonSerializable;
 
+/**
+ * Class Response
+ * Summary
+ *
+ * @since   1.0.0
+ * @access (private, protected, or public)
+ * @package SlackBotService\Model
+ */
 class Response implements JsonSerializable{
 	protected $type;
 	protected $text;
 	protected $errorCode = null;
+
+	/**
+	 * @param string $text
+	 * @param null   $errorCode
+	 * @param string $type
+	 */
 	public function __construct($text = '', $errorCode = null, $type='text'){
 		$this->text = $text;
 		$this->errorCode = $errorCode;

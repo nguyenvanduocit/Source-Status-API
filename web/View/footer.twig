@@ -1,0 +1,53 @@
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l4 s12">
+                <h5 class="white-text">Help Materialize Grow</h5>
+                <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+            </div>
+            <div class="col l4 s12">
+                <h5 class="white-text">Join the Discussion</h5>
+                <p class="grey-text text-lighten-4">We have a Gitter chat room set up where you can talk directly with us. Come in and discuss new features, future goals, general problems or questions, or anything else you can think of.</p>
+            </div>
+            <div class="col l4 s12" style="overflow: hidden;">
+                <h5 class="white-text">Sen Việt</h5>
+                <p class="grey-text text-lighten-4">Sen Việt là trang hướng dẫn lập trình web, php và WordPress bằng tiếng Việt.</p>
+                <a class="btn waves-effect waves-light red lighten-3" target="_blank" href="http://laptrinh.senviet.org">Xem ngay</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">© 2014-2015 SenViet.org, All rights reserved.<a class="grey-text text-lighten-4 right" href="https://github.com/Dogfalo/materialize/blob/master/LICENSE">MIT License</a>
+        </div>
+    </div>
+</footer>
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script>
+    if (!window.jQuery) {
+        document.write('<script src="{{ app.request.BasePath }}/public/jquery-2.1.1.min.js"><\/script>');
+    }
+</script>
+<script>
+    var ajaxUrl = "{{ url('SourceQuery') }}";
+</script>
+<script src="{{ app.request.BasePath }}/public/js/jquery.timeago.min.js"></script>
+<script src="{{ app.request.BasePath }}/public/js/materialize.js"></script>
+<script src="{{ app.request.BasePath }}/public/js/init.js"></script>
+<!-- Twitter Button -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<!-- Google Plus Button-->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<!--  Google Analytics  -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-56218128-1', 'auto');
+    ga('require', 'displayfeatures');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>
