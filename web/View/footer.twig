@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col l4 s12">
                 <h5 class="white-text">ĐĂNG KÝ ACCOUNT</h5>
-                <p class="grey-text text-lighten-4">Để được tham gia chơi online, bạn phải được người khác mời. Bạn có thể tìm invite tại fanpage. Hãy chăm chỉ theo dõi và pm xin invite, hoặc làm điều gì đó nổi bật. Việc invite này sẽ giúp các bạn gắn bó với nhau hơn và giảm thiểu hack.</p>
+                <p class="grey-text text-lighten-4">Để được tham gia chơi online, bạn phải được người khác mời. Bạn có thể tìm invite tại group. Hãy chăm chỉ theo dõi và pm xin invite, hoặc làm điều gì đó nổi bật. Việc invite này sẽ giúp các bạn gắn bó với nhau hơn và giảm thiểu hack.</p>
             </div>
             <div class="col l4 s12">
                 <h5 class="white-text">LỢI NHUẬN</h5>
@@ -22,22 +22,18 @@
     </div>
 </footer>
 <!--  Scripts-->
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script>
-    if (!window.jQuery) {
-        document.write('<script src="{{ app.request.BasePath }}/public/jquery-2.1.1.min.js"><\/script>');
-    }
-</script>
 <script>
     var ajaxUrl = "{{ url('SourceQuery') }}";
 </script>
-<script src="{{ app.request.BasePath }}/public/js/jquery.timeago.min.js"></script>
+{{ include('JsTemplate/playerItem.twig') }}
+{{ include('JsTemplate/playerListLoading.twig') }}
+{{ include('JsTemplate/playerListEmpty.twig') }}
+<script src="{{ app.request.BasePath }}/public/js/jquery-2.1.4.min.js"></script>
+<script src="{{ app.request.BasePath }}/public/js/underscore-min.js"></script>
+<script src="{{ app.request.BasePath }}/public/js/backbone-min.js"></script>
+<script src="{{ app.request.BasePath }}/public/js/backbone.marionette.js"></script>
 <script src="{{ app.request.BasePath }}/public/js/materialize.js"></script>
 <script src="{{ app.request.BasePath }}/public/js/init.js"></script>
-<!-- Twitter Button -->
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-<!-- Google Plus Button-->
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 <!--  Google Analytics  -->
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
