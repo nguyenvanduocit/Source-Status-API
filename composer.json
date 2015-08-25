@@ -30,5 +30,11 @@
             "type": "git",
             "url": "https://github.com/xPaw/PHP-Source-Query"
         }
-    ]
+    ],
+    "extra": {
+        "heroku": {
+            "document-root": "web",
+            "index-document": "index.php"
+        }
+    }
 }
