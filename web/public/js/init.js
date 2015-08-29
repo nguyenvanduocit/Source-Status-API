@@ -1,21 +1,68 @@
 (
-	function ( $ ) {
-		var InforRequest = function(selector){
+	function ( $, Backbone, Marionette, _, myApp ) {
+
+		var PlayerModel = Backbone.Model.extend({
+
+		});
+		var PlayerCollection = Backbone.Collection.extend({
+			model:PlayerModel
+		});
+		var PlayerItemView = Marionette.ItemView.extend({
+			template: "#PlayerItemTemplate",
+			tagName:'li',
+			className:'collection-item row'
+		});
+		var PlayerListLoadingView =  PlayerItemView.extend({
+			template: "#PlayerListLoadingTemplate"
+		});
+		var PlayerListEmptyView =  PlayerItemView.extend({
+			template: "#PlayerListEmptyTemplate"
+		});
+		var PlayerCollectionView = Marionette.CollectionView.extend({
+			childView: PlayerItemView,
+			tagName:'ul',
+			emptyView : PlayerListLoadingView,
+		});
+
+
+		var InfoRequest = function(selector){
+
 			this.$el = $(selector);
+			this.collection = new PlayerCollection();
+			this.ip = this.$el.data('ip');
+			this.port = this.$el.data('port');
+			this.listContainer = this.$el.find('.infoListContainer');
+			this.mapNameEl = this.$el.find('.mapPlaceHolder');
+			this.playerCountEl = this.$el.find('.statPlaceHolder');
+			this.playerListView = new PlayerCollectionView({
+				el:this.listContainer,
+				collection:this.collection
+			});
+			this.playerListView.render();
+			this.collection.comparator = function(model) {
+				return -model.get('Frags');
+			};
 			this.request =function(){
 				var self = this;
-				var ip = this.$el.data('ip');
-				var port = this.$el.data('port');
 				$.ajax({
 					url : ajaxUrl,
 					type : "post",
 					data : {
-						serverIp:ip,
-						port:port
+						serverIp:this.ip,
+						port:this.port
 					},
 					success : function (result){
 						if(result.success){
-							self.fillResult(result.data);
+							var data = result.data;
+
+							self.mapNameEl.text(data.info.Map);
+							var realPlayer = data.info.Players - data.info.Bots;
+							if(realPlayer === 0){
+								self.playerListView.emptyView = PlayerListEmptyView;
+							}
+							self.playerCountEl.text( realPlayer + '/' + data.info.MaxPlayers);
+							self.collection.reset(data.players);
+							self.collection.sort();
 						}
 						else{
 							self.$el.find('.loadingPlaceHolder' ).text('Error : ' + result.message);
@@ -23,35 +70,9 @@
 					}
 				});
 			};
-			this.fillResult  =function(data)
-			{
-				var listContainer = this.$el.find('.infoListContainer');
-				listContainer.find('.loadingPlaceHolder').remove();
-				var info = data.info;
-
-				var mapPlaceHolder = this.$el.find('.mapPlaceHolder');
-				mapPlaceHolder.text(info.Map);
-
-				var statPlaceHolder = this.$el.find('.statPlaceHolder');
-				var realPlayer = info.Players - info.Bots;
-				statPlaceHolder.text(realPlayer +'/' + info.MaxPlayers);
-
-				if(realPlayer > 0){
-					var players = data.players;
-					players.sort(function(a, b) {
-						return a.Frags <= b.Frags;
-					});
-					for(var index = 0; index < players.length; index++){
-						listContainer.append(this.generateItem(players[index ].Name,players[index ].Frags + ' điểm'));
-					}
-				}
-				else{
-					listContainer.append('<li class="collection-item">Hiện không có người chơi nào</li>');
-				}
-
-			};
-			this.generateItem = function(name,text){
-				return '<li class="collection-item row"><strong class="col s12 m8">'+name+'</strong> <span class="col s12 m4">' + text + '</span></li>';
+			this.startInterval = function(){
+				var self=this;
+				setInterval(function(){self.request()}, 8000);
 			}
 		};
 
@@ -90,11 +111,12 @@
 			function requestServerStat() {
 				var infoContainers = $('.serverInfoContainer');
 				for(var index = 0; index< infoContainers.length; index++){
-					var request = new InforRequest(infoContainers[index]);
+					var request = new InfoRequest(infoContainers[index]);
 					request.request();
+					request.startInterval();
 				}
 			}
 			requestServerStat()
 		} ); // end of document ready
 	}
-)( jQuery ); // end of jQuery name space
+)( jQuery, Backbone,Marionette, _, window.myApp ); // end of jQuery name space
