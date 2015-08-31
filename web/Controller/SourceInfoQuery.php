@@ -37,8 +37,7 @@ class SourceInfoQuery {
 				'success'=>true,
 				'data'=>array(
 					'info'=>$sourceQuery->GetInfo(),
-					'players'=>$sourceQuery->GetPlayers(),
-					'rules'=>$sourceQuery->GetRules()
+					'players'=>$sourceQuery->GetPlayers()
 				)
 			);
 			return new JsonResponse($result);
