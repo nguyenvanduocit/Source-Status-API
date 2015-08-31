@@ -31,7 +31,8 @@ class SourceInfoQuery {
 		{
 			$ip = $request->get('serverIp');
 			$port = $request->get('port');
-			$sourceQuery->Connect( $ip, $port, 1, 730 );
+			$appId = $request->get('appid');
+			$sourceQuery->Connect( $ip, $port, 1, $appId );
 			$result = array(
 				'success'=>true,
 				'data'=>array(

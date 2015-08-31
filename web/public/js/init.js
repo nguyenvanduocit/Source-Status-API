@@ -31,6 +31,7 @@
 			this.collection = new PlayerCollection();
 			this.ip = this.$el.data('ip');
 			this.port = this.$el.data('port');
+			this.appid = this.$el.data('appid');
 			this.listContainer = this.$el.find('.infoListContainer');
 			this.mapNameEl = this.$el.find('.mapPlaceHolder');
 			this.playerCountEl = this.$el.find('.statPlaceHolder');
@@ -49,7 +50,8 @@
 					type : "post",
 					data : {
 						serverIp:this.ip,
-						port:this.port
+						port:this.port,
+						appid:this.appid,
 					},
 					success : function (result){
 						if(result.success){
