@@ -74,7 +74,7 @@
 			};
 			this.startInterval = function(){
 				var self=this;
-				setInterval(function(){self.request()}, 8000);
+				setInterval(function(){self.request()}, 10000);
 			}
 		};
 
