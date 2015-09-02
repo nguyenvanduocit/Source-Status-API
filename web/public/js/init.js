@@ -73,7 +73,7 @@
 								 */
 								self.noticeView.removeClass('hide');
 								self.listContainer.addClass('hide');
-								self.noticeView.text('Server ?ang g?p s? c?.');
+								self.noticeView.text('Server đang gặp sự cố.');
 							}
 						}
 						else{
