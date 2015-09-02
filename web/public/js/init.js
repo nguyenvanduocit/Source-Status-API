@@ -68,6 +68,7 @@
 								/**
 								 * Server not response
 								 */
+								self.playerListView.hide();
 							}
 						}
 						else{
