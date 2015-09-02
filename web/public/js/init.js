@@ -37,6 +37,7 @@
 				el:this.listContainer,
 				collection:this.collection
 			});
+			this.noticeView = this.$el.find('.notice');
 			this.playerListView.render();
 			this.collection.comparator = function(model) {
 				return -model.get('Frags');
@@ -55,6 +56,8 @@
 						if(result.success){
 							var data = result.data;
 							if(data.info != false){
+								self.noticeView.addClass('hide');
+								self.listContainer.removeClass('hide');
 								self.mapNameEl.text(data.info.Map);
 								var realPlayer = data.info.Players - data.info.Bots;
 								if(realPlayer === 0){
@@ -68,7 +71,9 @@
 								/**
 								 * Server not response
 								 */
-								self.playerListView.hide();
+								self.noticeView.removeClass('hide');
+								self.listContainer.addClass('hide');
+								self.noticeView.text('Server ?ang g?p s? c?.');
 							}
 						}
 						else{
