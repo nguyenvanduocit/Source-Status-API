@@ -15,9 +15,7 @@
 		var PlayerListLoadingView =  PlayerItemView.extend({
 			template: "#PlayerListLoadingTemplate"
 		});
-		var PlayerListEmptyView =  PlayerItemView.extend({
-			template: "#PlayerListEmptyTemplate"
-		});
+
 		var PlayerCollectionView = Marionette.CollectionView.extend({
 			childView: PlayerItemView,
 			tagName:'ul',
@@ -56,15 +54,21 @@
 					success : function (result){
 						if(result.success){
 							var data = result.data;
-
-							self.mapNameEl.text(data.info.Map);
-							var realPlayer = data.info.Players - data.info.Bots;
-							if(realPlayer === 0){
-								self.playerListView.emptyView = PlayerListEmptyView;
+							if(data.info != false){
+								self.mapNameEl.text(data.info.Map);
+								var realPlayer = data.info.Players - data.info.Bots;
+								if(realPlayer === 0){
+									self.playerListView.emptyView = PlayerListEmptyView;
+								}
+								self.playerCountEl.text( realPlayer + '/' + data.info.MaxPlayers);
+								self.collection.reset(data.players);
+								self.collection.sort();
 							}
-							self.playerCountEl.text( realPlayer + '/' + data.info.MaxPlayers);
-							self.collection.reset(data.players);
-							self.collection.sort();
+							else{
+								/**
+								 * Server not response
+								 */
+							}
 						}
 						else{
 							self.$el.find('.loadingPlaceHolder' ).text('Error : ' + result.message);
