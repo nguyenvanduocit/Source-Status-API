@@ -46,5 +46,6 @@ class SourceInfoQuery {
 		{
 			return new JsonResponse(array('success'=>FALSE, 'message'=> $e->getMessage()));
 		}
+		$sourceQuery->Disconnect();
 	}
 }
