@@ -1,6 +1,8 @@
 <?php
 use Silex\Provider\UrlGeneratorServiceProvider;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 define('APP_DIR', __DIR__);
 require_once APP_DIR . '/../vendor/autoload.php';
 
