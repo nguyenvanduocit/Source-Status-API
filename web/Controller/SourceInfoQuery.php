@@ -40,6 +40,7 @@ class SourceInfoQuery {
 					'players'=>$sourceQuery->GetPlayers()
 				)
 			);
+			$result['success'] = is_array($result['data']['info']) && is_array($result['data']['players']);
 			return new JsonResponse($result);
 		}
 		catch( \Exception $e )
