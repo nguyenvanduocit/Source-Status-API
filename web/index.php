@@ -26,4 +26,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 	'twig.path' => __DIR__."/View",
 ));
 $app->register(new UrlGeneratorServiceProvider());
+$app->after(function (Request $request, Response $response) {
+	$response->headers->set('Access-Control-Allow-Origin', '*');
+});
 $app->run();
